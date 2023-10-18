@@ -2,9 +2,10 @@
 
 Projeto prático da FullStack Week, na qual criamos um e-commerce de acessórios para setup.
 
-## Tecnologias utilizadas 
+## Tecnologias utilizadas
 
 - Next.js
 - Prisma
 - Supabase
 - shadcn/ui
+- NextAuth.js
