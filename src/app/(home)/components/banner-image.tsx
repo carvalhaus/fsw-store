@@ -9,6 +9,7 @@ const Banner = ({ src, alt }: ImageProps) => {
       className="h-auto w-full"
       sizes="100vw"
       alt={alt}
+      priority="false"
     />
   );
 };
