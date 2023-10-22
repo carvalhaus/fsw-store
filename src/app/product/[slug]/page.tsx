@@ -3,6 +3,7 @@ import ProductImages from "./components/product-images";
 import { computeProductTotalPrice } from "@/helpers/product";
 import ProductInfo from "./components/product-info";
 import ProductList from "@/components/ui/product-list";
+import SectionTitle from "@/app/(home)/components/section-title";
 
 interface ProductDetailPageProps {
   params: {
@@ -41,7 +42,7 @@ const ProductDetailPage = async ({
       <ProductImages imageUrls={product.imageUrls} name={product.name} />
       <ProductInfo product={computeProductTotalPrice(product)} />
       <div>
-        <h3 className="px-5 pt-5 uppercase font-bold">Produtos recomendados</h3>
+        <SectionTitle>Produtos recomendados</SectionTitle>
         <ProductList products={product.category.products} />
       </div>
     </div>
