@@ -23,10 +23,12 @@ const ProductItem = ({ product }: ProductItemProp) => {
           alt={product.slug}
         />
 
-        <Badge className="absolute left-[10px] top-[10px] px-2 py-[2px]">
-          <ArrowDownIcon size={12} />
-          <p className="font-bold">{product.discountPercentage}%</p>
-        </Badge>
+        {product.discountPercentage > 0 && (
+          <Badge className="absolute left-[10px] top-[10px] px-2 py-[2px]">
+            <ArrowDownIcon size={12} />
+            <p className="font-bold">{product.discountPercentage}%</p>
+          </Badge>
+        )}
       </div>
 
       <div className="flex flex-col gap-1">
@@ -43,7 +45,7 @@ const ProductItem = ({ product }: ProductItemProp) => {
               </p>
             </>
           ) : (
-            <p>{product.totalPrice}</p>
+            <p className="font-bold">R$ {product.totalPrice.toFixed(2)}</p>
           )}
         </div>
       </div>
