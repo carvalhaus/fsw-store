@@ -3,26 +3,23 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ProductWithTotalPrice } from "@/helpers/product";
+import { CartContext } from "@/providers/cart";
 import {
   ArrowDownIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
   TruckIcon,
-  icons,
 } from "lucide-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 interface ProductInfoProps {
-  product: Pick<
-    ProductWithTotalPrice,
-    "basePrice" | "description" | "name" | "discountPercentage" | "totalPrice"
-  >;
+  product: ProductWithTotalPrice;
 }
 
-const ProductInfo = ({
-  product: { name, basePrice, description, discountPercentage, totalPrice },
-}: ProductInfoProps) => {
+const ProductInfo = ({ product }: ProductInfoProps) => {
   const [quantity, setQuantity] = useState(1);
+
+  const { addProductToCart } = useContext(CartContext);
 
   const handleDecreaseQuantity = () => {
     setQuantity((prev) => (prev === 1 ? prev : prev - 1));
@@ -32,23 +29,29 @@ const ProductInfo = ({
     setQuantity((prev) => prev + 1);
   };
 
+  const handleAddProductsToCartClick = () => {
+    addProductToCart({ ...product, quantity });
+  };
+
   return (
     <div className="flex flex-col p-5 gap-3">
-      <h2 className="text-lg">{name}</h2>
+      <h2 className="text-lg">{product.name}</h2>
 
       <div className="flex flex-col">
         <div className="flex gap-2">
-          <h3 className="text-xl font-bold">R$ {totalPrice.toFixed(2)}</h3>
-          {discountPercentage > 0 && (
+          <h3 className="text-xl font-bold">
+            R$ {product.totalPrice.toFixed(2)}
+          </h3>
+          {product.discountPercentage > 0 && (
             <Badge className="px-2 py-[2px]">
               <ArrowDownIcon size={12} />
-              <p className="font-bold">{discountPercentage}%</p>
+              <p className="font-bold">{product.discountPercentage}%</p>
             </Badge>
           )}
         </div>
-        {discountPercentage > 0 && (
+        {product.discountPercentage > 0 && (
           <p className="text-sm opacity-40 line-through">
-            R$ {Number(basePrice).toFixed(2)}
+            R$ {Number(product.basePrice).toFixed(2)}
           </p>
         )}
       </div>
@@ -67,10 +70,10 @@ const ProductInfo = ({
 
       <div className="flex flex-col gap-2 py-5">
         <h4 className="font-bold text-sm">Descrição</h4>
-        <p className="text-xs opacity-40">{description}</p>
+        <p className="text-xs opacity-40">{product.description}</p>
       </div>
 
-      <Button>
+      <Button onClick={handleAddProductsToCartClick}>
         <p className="uppercase font-bold text-sm">Adicionar ao carinho</p>
       </Button>
 
