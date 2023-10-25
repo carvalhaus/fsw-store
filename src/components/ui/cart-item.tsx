@@ -28,7 +28,7 @@ const CartItem = ({ product }: CartItemProps) => {
   };
 
   return (
-    <div className="flex items-center justify-between w-[100%] h-[77px]">
+    <div className="flex items-center justify-between w-[100%] h-[77px] mb-5">
       <div className="flex items-center gap-2 ">
         {/* {Foto nome} */}
         <div className="flex items-center justify-center rounded-lg bg-neutral-800 w-[77px] h-[77px]">
