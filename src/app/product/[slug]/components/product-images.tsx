@@ -33,6 +33,7 @@ const ProductImages = ({ imageUrls, name }: ProductImagesProps) => {
       <div className="grid grid-cols-4 gap-24 p-5 overflow-x-auto [&::-webkit-scrollbar]:hidden w-full">
         {imageUrls.map((imageUrl) => (
           <Button
+            key={imageUrl}
             variant={"outline"}
             className={`flex h-[100px] w-[100px] items-center justify-center bg-neutral-800 ${
               imageUrl === currentImage &&
