@@ -9,3 +9,4 @@ Projeto prático da FullStack Week, na qual criamos um e-commerce de acessórios
 - Supabase
 - shadcn/ui
 - NextAuth.js
+- Stripe
