@@ -6,6 +6,7 @@ import CartItem from "./cart-item";
 import { computeProductTotalPrice } from "@/helpers/product";
 import { Separator } from "./separator";
 import { ScrollArea } from "./scroll-area";
+import { Button } from "./button";
 
 const Cart = () => {
   const { products, subTotal, total, totalDiscount } = useContext(CartContext);
@@ -14,7 +15,7 @@ const Cart = () => {
     <div className="flex flex-col justify-between h-[93vh]">
       <Badge
         variant={"outline"}
-        className="border-primary gap-1 uppercase font-bold"
+        className="border-primary gap-1 uppercase font-bold w-28 justify-center"
       >
         <ShoppingCartIcon size={16} />
         Carinho
@@ -59,6 +60,10 @@ const Cart = () => {
           <p>R$ {total.toFixed(2)}</p>
         </div>
       </div>
+
+      <Button className="mt-5 uppercase text-sm font-bold">
+        Finalizar compra
+      </Button>
     </div>
   );
 };
